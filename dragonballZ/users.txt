@@ -1,0 +1,12 @@
+﻿*Tutorial per els usuaris:
+
+Aquesta aplicació estarà composta d'una portada interectiva, una pantalla per el registres de millors puntuacions,
+pulsarem la tecla 'r' o 'R' per accedir-hi a la pantalla associada.
+També hi han opcions de reconfiguració de pantalla amb les tecles de control F1, F2 i F3 des de la mateixa portada iteractiva,
+com també la possibilitat de jugar amb 1 o 2 jugadors amb la tecla 'p' o 'P', invertin la sel·lecció ell mateix amb vermell serà 
+un jugador tan sol, normal seran dos jugadors.
+Finalment amb el botó del nostre mouse accedim al joc on tobarem els objectes caien del cel i tenim de recollir-los, amb el nostres 
+jugadador, el joc es composa de 7 nivells de dificultat, on anem accedint a mesura que anem aconseguint punt de les boles de drac
+que aconseguim, tenim un màxim de 3 oportunitats per obtenir la nostra màxima puntuació.
+En totes les finestres sortirem d'ells en qualsevol moment per la tecla 'ESC' o també la possibilitat de tancar la finestres
+des de la finestre de pygame a dalt a la dreta on hi ha un quadrat amb una X. 
