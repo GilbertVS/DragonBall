@@ -10,7 +10,7 @@ amb nombres de vides incrementables per cada un d'ells
 @author: Gilbert Viader
 """
 import pygame
-import sqlite3
+#import sqlite3
 import random
 from datetime import datetime
 import time
@@ -411,7 +411,7 @@ class Bolesdrac (object) :
         creació del constructor de la classe
         """
         self.ballD = ""
-        self.boles_speed = 6
+        self.boles_speed = 4
         self.alsada_ball = joc.alsada_Pantalla / 12
         self.amplada_ball = joc.amplada_Pantalla / 14
         self.ball_x = random.randrange(0, int(joc.amplada_Pantalla - self.amplada_ball))
@@ -606,11 +606,12 @@ class Joc (object) :
             img.gokur = img.songohan
             img.a16r = img.Trunks
             img.a16 = img.Trunksr
-            bolesD.boles_speed = 7
+            bolesD.boles_speed = 6
         if (juga1.score1+juga2.score2) > 19 and (juga1.score1+juga2.score2 < 30)  :
             joc.level = 3
             img.Fons_n1 = img.Fons_n3
             img.ballD = img.ball4
+            bolesD.boles_speed = 11
         if (juga1.score1+juga2.score2) > 29 and (juga1.score1+juga2.score2 < 50)  :
             joc.level = 4
             img.goku = img.goku7r
@@ -667,26 +668,26 @@ class Joc (object) :
 # -----------------------------------------------------------------------------------------------------------------------
 #    ------------------------------------------------ mètodes per la llista del millors registres -----------------------
 #   --------------------------------------------------------------------------------------------------------------------- 
-    def connecSQL (self) :
-        """
-        crearem una mètode per fer una connexió a una BBDD i poder extreure els
-        resultats per pantalla de pygame
-        """
-        cont = []
-        nom = ""
-        punt = ""
-        naci = ""
-        self.connexio = sqlite3.connect("DragonBall.db")
-        self.cursor = self.connexio.cursor()
-        self.cursor.execute("SELECT id, pseudonim, nivell, email, nacionalitat, puntuacio FROM RegistreDragon ORDER BY puntuacio DESC")
-        registres = self.cursor.fetchall()
-        for registre in registres :
-            nom = registre[1]
-            naci = registre[4]
-            punt = registre[5]
-            cont += " ",nom," ",naci," ",punt          
-        self.connexio.close()
-        return cont
+#    def connecSQL (self) :
+#        """
+#        crearem una mètode per fer una connexió a una BBDD i poder extreure els
+#        resultats per pantalla de pygame
+#        """
+#        cont = []
+#        nom = ""
+#        punt = ""
+#        naci = ""
+#        self.connexio = sqlite3.connect("DragonBall.db")
+#        self.cursor = self.connexio.cursor()
+#        self.cursor.execute("SELECT id, pseudonim, nivell, email, nacionalitat, puntuacio FROM RegistreDragon ORDER BY puntuacio DESC")
+#        registres = self.cursor.fetchall()
+#        for registre in registres :
+#            nom = registre[1]
+#            naci = registre[4]
+#            punt = registre[5]
+#            cont += " ",nom," ",naci," ",punt          
+#        self.connexio.close()
+#        return cont
     def evensRanking (self, reg) :
         """
         crearem una funció per els esdeveniment de la pantalla de rankings
@@ -705,16 +706,16 @@ class Joc (object) :
         joc.pantalla.fill(joc.color_scr)
         self.tipografia = pygame.font.SysFont("serif", joc.mida_txt)
         self.linia1 = self.tipografia.render("THE BEST SCORE HERE", 1, (21, 21, 212))
-        self.linia2 = self.tipografia.render("1. {} ({}): {}".format(container[1],container[3],container[5]),1,(21, 21, 21))
-        self.linia3 = self.tipografia.render("2. {} ({}): {}".format(container[7],container[9],container[11]),1,(21, 21, 21))
-        self.linia4 = self.tipografia.render("3. {} ({}): {}".format(container[13],container[15],container[17]),1,(21, 21, 21))
-        self.linia5 = self.tipografia.render("4. {} ({}): {}".format(container[19],container[21],container[23]),1,(21, 21, 21))
+#        self.linia2 = self.tipografia.render("1. {} ({}): {}".format(container[1],container[3],container[5]),1,(21, 21, 21))
+#        self.linia3 = self.tipografia.render("2. {} ({}): {}".format(container[7],container[9],container[11]),1,(21, 21, 21))
+#        self.linia4 = self.tipografia.render("3. {} ({}): {}".format(container[13],container[15],container[17]),1,(21, 21, 21))
+#        self.linia5 = self.tipografia.render("4. {} ({}): {}".format(container[19],container[21],container[23]),1,(21, 21, 21))
         joc.pantalla.blit(img.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
         joc.pantalla.blit(self.linia1, (joc.amplada_Pantalla/10, 10))
-        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/5))
-        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/5))
-        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/5)) 
-        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/5))
+#        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/5))
+#        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/5))
+#        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/5)) 
+#        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/5))
         pygame.display.flip()
 # -----------------------------------------------------------------------------------------------------------------------
 #    ------------------------------------------- mètodes per la portada iteractiva --------------------------------------
@@ -768,7 +769,7 @@ class Joc (object) :
                     img.actualImg(joc, juga1, juga2, bolesD)
                 if event.key == 114 :
                     txt.color_txt4 = (212, 12, 12)
-                    container = joc.connecSQL() 
+                    #container = joc.connecSQL() 
                     reg = False
                     time.sleep(0.5)                     
             elif event.type == pygame.MOUSEMOTION :
@@ -820,10 +821,10 @@ class Joc (object) :
         return inserir
     def visualRegister (self, txt, joc, img, jugador1) :
         """ crearem el mètode per visualitzar el camps del nostre nou registre """
-        #joc.pantalla.fill(joc.color_scr)
-        formAuxiliar(joc, jugador1)
-        return True
-        #pygame.display.flip()
+        joc.pantalla.fill(joc.color_scr)
+        #formAuxiliar(joc, jugador1)
+        pygame.display.flip()
+        #return True
 """-------------------------------------------------------------------------------------------------------------------
    ------------------------------------------------------ Funcions principal main ------------------------------------
    -------------------------------------------------------------------------------------------------------------------
@@ -879,7 +880,7 @@ def main():
             """bucle on innsertirem els camps del nou registre """
             inserir = joc.evensRegister(inserir, text1)
             """ mètode per controlar les entrades de caràcters d'entrada """
-            inserir = joc.visualRegister(text1, joc, img, jugador1)
+            joc.visualRegister(text1, joc, img, jugador1)
             """ mètode on serà visibilitats els textes en la pantalla creada """
             pygame.display.update()
             segons.tick(60)
@@ -907,14 +908,14 @@ def main():
    --------------------------------------------------------------------------------------------------------------------
 """
 #-------------------------------------------- connexió amb SQL i insertem un nou registre
-def connecSQLIn(pseudonim, nivell, email, nacionalitat, puntuacio) :
-    connexio = sqlite3.connect("DragonBall.db")
-    cursor = connexio.cursor()
-    arxiu = [(pseudonim, nivell, email, nacionalitat, puntuacio)]
-    #print ("arx:", arxiu)
-    cursor.executemany("INSERT INTO RegistreDragon VALUES (NULL,?,?,?,?,?)",arxiu)
-    connexio.commit()
-    connexio.close()
+#def connecSQLIn(pseudonim, nivell, email, nacionalitat, puntuacio) :
+#    connexio = sqlite3.connect("DragonBall.db")
+#    cursor = connexio.cursor()
+#    arxiu = [(pseudonim, nivell, email, nacionalitat, puntuacio)]
+#    #print ("arx:", arxiu)
+#    cursor.executemany("INSERT INTO RegistreDragon VALUES (NULL,?,?,?,?,?)",arxiu)
+#    connexio.commit()
+#    connexio.close()
 #----------------------------  funció d'extreure el formulari per pantalla
 def formAuxiliar (joc, jugador1) :
 #------------------- MULTIUSER BOX
@@ -948,10 +949,10 @@ def fes_bucle (joc, jugador1, fieldNames, fieldValues, title, errores_msg):
             if errores_msg == "": 
                 validOK = True
     #------------------------------------------- end while
-    nivell = joc.level
-    puntuacio = jugador1.score1
+    #nivell = joc.level
+    #puntuacio = jugador1.score1
     #print ("Dades entrades:", fieldValues)
-    connecSQLIn(fieldValues[0], nivell, fieldValues[2], fieldValues[1], puntuacio)
+    #connecSQLIn(fieldValues[0], nivell, fieldValues[2], fieldValues[1], puntuacio)
     return True
 
 
