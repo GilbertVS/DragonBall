@@ -51,7 +51,7 @@ class Jugador1 (object) :
         self.amplada_kame = joc.amplada_Pantalla/26
         self.alsada_kame = joc.alsada_Pantalla/8
         """ mides dels kamehame """
-        self.j1_x = joc.amplada_Pantalla*2/4
+        self.j1_x = joc.amplada_Pantalla*2/3
         self.j1_y = joc.alsada_Pantalla - self.alsada_jugador
         self.ka1_x = self.j1_x
         self.ka1_y = joc.alsada_Pantalla - self.alsada_kame        
@@ -69,7 +69,7 @@ class Jugador1 (object) :
         self.amplada_kame = joc.amplada_Pantalla/26
         self.alsada_kame = joc.alsada_Pantalla/8
         """ mides dels kamehame """
-        self.j1_x = joc.amplada_Pantalla*2/4
+        self.j1_x = joc.amplada_Pantalla*2/3
         self.j1_y = joc.alsada_Pantalla - self.alsada_jugador
         self.ka1_x = self.j1_x
         self.ka1_y = joc.alsada_Pantalla - self.alsada_kame
@@ -92,7 +92,11 @@ class Text1 () :
         """
         creació del mètode per l'actualització del jugador
         """
-        pass
+        self.color_txt1 = (12, 12, 12)
+        self.color_txt2 = (12, 12, 12)
+        self.color_txt3 = (12, 12, 12)
+        self.color_txt4 = (12, 12, 12)
+        self.color_txt5 = (12, 12, 12)
 class Jugador2 (object) :
     """
     creació de la classe per el jugador 2, on emprearem els mètodes de posició
@@ -114,7 +118,7 @@ class Jugador2 (object) :
         self.alsada_kame = joc.alsada_Pantalla/8
         """ mides dels kamehame """
         """ carregà de la imatge inicial del jugador2 i el seu projectil"""
-        self.j2_x = joc.amplada_Pantalla/4
+        self.j2_x = joc.amplada_Pantalla/3
         self.j2_y = joc.alsada_Pantalla - self.alsada_jugador
         self.ka2_x = self.j2_x
         self.ka2_y = joc.alsada_Pantalla - self.alsada_kame
@@ -133,7 +137,7 @@ class Jugador2 (object) :
         self.amplada_kame = joc.amplada_Pantalla/26
         self.alsada_kame = joc.alsada_Pantalla/8
         """ mides dels kamehame """
-        self.j2_x = joc.amplada_Pantalla/4
+        self.j2_x = joc.amplada_Pantalla/3
         self.j2_y = joc.alsada_Pantalla - self.alsada_jugador
         self.ka2_x = self.j2_x
         self.ka2_y = joc.alsada_Pantalla - self.alsada_kame
@@ -160,7 +164,8 @@ class carregaImg (object) :
         self.ball4 = pygame.transform.scale(self.ball4, (int(ball.amplada_ball), int(ball.alsada_ball)))
         self.ballZ = "z_ball.png"
         self.ballZ = pygame.image.load(self.ballZ).convert_alpha()
-        self.ballZ = pygame.transform.scale(self.ballZ, (int(ball.amplada_ball), int(ball.alsada_ball)))        
+        self.ballZ = pygame.transform.scale(self.ballZ, (int(ball.amplada_ball), int(ball.alsada_ball)))
+        self.ball = self.ballD
         """ boles de drac """
         self.a16 = "a-16.png"
         self.a16 = pygame.image.load(self.a16).convert_alpha()
@@ -227,7 +232,6 @@ class carregaImg (object) :
         self.goku2 = "goku2.png"
         self.goku2 = pygame.image.load(self.goku2).convert_alpha()
         self.goku2 = pygame.transform.scale(self.goku2, (int(joc.amplada_Pantalla), int(joc.alsada_Pantalla)))
-        self.goku3 = "goku3.png"
         self.goku8 = "goku8.png"
         self.goku8 = pygame.image.load(self.goku8).convert_alpha()
         self.goku8 = pygame.transform.scale(self.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
@@ -243,7 +247,16 @@ class carregaImg (object) :
         self.Fons_n7 = "brolyEsc.jpg"
         self.Fons_n7 = pygame.image.load(self.Fons_n7).convert_alpha()
         self.Fons_n7 = pygame.transform.scale(self.Fons_n7, (int(joc.amplada_Pantalla), int(joc.alsada_Pantalla)))
+        self.Fons = self.Fons_n1
+        self.juga1dreta = self.a16r
+        self.juga1esque = self.a16
+        self.juga2dreta = self.goku
+        self.juga2esque = self.gokur
         """carregar dels fitxers imatge en variables per el fons de les finestres"""
+        self.goku3 = "goku31.png"
+        self.goku3 = pygame.image.load(self.goku3)
+        pygame.display.set_icon(self.goku3)
+        """ icona del joc per la finestre pygame """
     def actualImg (self, joc, juga1, juga2, ball) :
         """
         creació del mètode per l'actualització del jugador
@@ -261,7 +274,8 @@ class carregaImg (object) :
         self.ball4 = pygame.transform.scale(self.ball4, (int(ball.amplada_ball), int(ball.alsada_ball)))
         self.ballZ = "z_ball.png"
         self.ballZ = pygame.image.load(self.ballZ).convert_alpha()
-        self.ballZ = pygame.transform.scale(self.ballZ, (int(ball.amplada_ball), int(ball.alsada_ball)))        
+        self.ballZ = pygame.transform.scale(self.ballZ, (int(ball.amplada_ball), int(ball.alsada_ball))) 
+        self.ball = self.ballD
         """ boles de drac """
         self.a16 = "a-16.png"
         self.a16 = pygame.image.load(self.a16).convert_alpha()
@@ -328,7 +342,6 @@ class carregaImg (object) :
         self.goku2 = "goku2.png"
         self.goku2 = pygame.image.load(self.goku2).convert_alpha()
         self.goku2 = pygame.transform.scale(self.goku2, (int(joc.amplada_Pantalla), int(joc.alsada_Pantalla)))
-        self.goku3 = "goku3.png"
         self.goku8 = "goku8.png"
         self.goku8 = pygame.image.load(self.goku8).convert_alpha()
         self.goku8 = pygame.transform.scale(self.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
@@ -344,7 +357,16 @@ class carregaImg (object) :
         self.Fons_n7 = "brolyEsc.jpg"
         self.Fons_n7 = pygame.image.load(self.Fons_n7).convert_alpha()
         self.Fons_n7 = pygame.transform.scale(self.Fons_n7, (int(joc.amplada_Pantalla), int(joc.alsada_Pantalla)))
-        """carregar dels fitxers imatge en variables per el fons de les finestres"""       
+        self.Fons = self.Fons_n1
+        self.juga1dreta = self.a16r
+        self.juga1esque = self.a16
+        self.juga2dreta = self.goku
+        self.juga2esque = self.gokur
+        """carregar dels fitxers imatge en variables per el fons de les finestres"""
+        self.goku3 = "goku31.png"
+        self.goku3 = pygame.image.load(self.goku3)
+        pygame.display.set_icon(self.goku3)
+        """ icona del joc per la finestre pygame """
 class Enemic1 () :
     """
     creació de la classe per el enemic 1, on emprearem els mètodes de posició
@@ -410,8 +432,8 @@ class Bolesdrac (object) :
         """
         creació del constructor de la classe
         """
-        self.ballD = ""
-        self.boles_speed = 4
+        #self.ballD = ""
+        self.boles_speed = 8
         self.alsada_ball = joc.alsada_Pantalla / 12
         self.amplada_ball = joc.amplada_Pantalla / 14
         self.ball_x = random.randrange(0, int(joc.amplada_Pantalla - self.amplada_ball))
@@ -463,7 +485,7 @@ class Joc (object) :
         self.amplada_kame = self.amplada_Pantalla/26
         self.alsada_kame = self.alsada_Pantalla/8
         """ mides dels kamehame """ 
-    def game_over (self,juga1, juga2, joc, img) :
+    def game_over (self,juga1, juga2, joc, img, txt1) :
         """
         creació del mètode de final de partida
         """
@@ -471,13 +493,16 @@ class Joc (object) :
         self.marcador2 = self.tipografia.render("Score:{} life:{} ||L.:".format(juga2.score2, juga2.life2),1,(222, 62, 62))
         self.marcador1 = self.tipografia.render("{}|| life:{} Score:{}".format(joc.level, juga1.life1, juga1.score1),1,(62, 62, 222))
         self.txt_final = self.tipografia.render("GAME OVER... return to start",1,(26, 26, 26))
-        joc.pantalla.blit(img.Fons_n1, (0, 0))
+        joc.pantalla.blit(img.Fons, (0, 0))
         joc.pantalla.blit(self.marcador2, (0, 10))
         joc.pantalla.blit(self.marcador1, (joc.amplada_Pantalla/2, 10))
         joc.pantalla.blit(self.txt_final, (20, joc.alsada_Pantalla/2))
         pygame.display.flip()
         juga1.acabat1 = False
         juga2.acabat2 = False
+        txt1.color_txt1 = (12, 12, 12)
+        juga1.j1_x = joc.amplada_Pantalla*2/3
+        juga2.j2_x = joc.amplada_Pantalla/3
         return True
 # ------------------------------------------------------------------------------------------------------
 #    ----------------------------------- mètodes per el joc del bola de drac Z -------------------------
@@ -487,7 +512,7 @@ class Joc (object) :
         crearem el mètode on tenim tots els esdeveniments de la del joc en definions
         de tecles de control
         """
-        fer = False
+        fer, pause = False, True
         for moment in pygame.event.get() :
             if moment.type == pygame.QUIT :
                 fer = True
@@ -495,25 +520,27 @@ class Joc (object) :
                 if moment.key == juga1.dreta_jug1 :           
                     juga1.jugador1_speed = 10
                     juga1.canvi_pos1 = 50
-                    juga1.guerrer1 = img.a16r
+                    juga1.guerrer1 = img.juga1dreta
                 if moment.key == juga1.esque_jug1 :
                     juga1.jugador1_speed = -10
                     juga1.canvi_pos1 = 0
-                    juga1.guerrer1 = img.a16
+                    juga1.guerrer1 = img.juga1esque
                 if moment.key == juga1.tret_jug1 :
                     juga1.tret1_speed = -50    
                 if moment.key == juga2.dreta_jug2 :           
                     juga2.jugador2_speed = 10
                     juga2.canvi_pos2 = 60
-                    juga2.guerrer2 = img.goku
+                    juga2.guerrer2 = img.juga2dreta
                 if moment.key == juga2.esque_jug2 :
                     juga2.jugador2_speed = -10
                     juga2.canvi_pos2 = 10
-                    juga2.guerrer2 = img.gokur
+                    juga2.guerrer2 = img.juga2esque
                 if moment.key == juga2.tret_jug2 :
                     juga2.tret2_speed = -50   
                 if moment.key == pygame.K_ESCAPE :                
-                    fer = True                           
+                    fer = True
+                if moment.key == 112 :
+                    pause = False                           
             elif moment.type == pygame.KEYUP :
                 if moment.key == juga1.dreta_jug1 or moment.key == juga1.esque_jug1 :
                     juga1.jugador1_speed = 0
@@ -525,8 +552,26 @@ class Joc (object) :
                 if moment.key == juga2.tret_jug2 :
                     juga2.tret2_speed = 0
                     juga2.ka2_y = joc.alsada_Pantalla - juga2.alsada_kame
-        return fer
-    def logicaExecutar (self, juga1, juga2, joc, img, bolesD) :
+        return fer, pause
+    def paused (self, pause, joc) :
+        """
+        crearem el mètode per parar el joc 
+        """
+        for moment in pygame.event.get():
+            if moment.type == pygame.QUIT :
+                pause = True
+            elif moment.type == pygame.KEYDOWN :
+                if moment.key == pygame.K_ESCAPE :
+                    pause = True
+                if moment.key == 112 :
+                    pause = True
+        tipografia = pygame.font.SysFont("serif", joc.mida_txt)
+        texte = tipografia.render("PAUSED", 1, (21, 21, 21))
+        joc.pantalla.blit(texte, (joc.amplada_Pantalla/3, joc.alsada_Pantalla/2))
+        pygame.mixer.music.pause()
+        pygame.display.flip()
+        return pause
+    def logicaExecutar (self, juga1, juga2, joc, img, bolesD, txt) :
         """
         crearem el mètode on aniran fer actualitzacions de les noves posicions del objectes 
         """
@@ -566,23 +611,23 @@ class Joc (object) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
             juga2.score2 += 1
-        if juga1.kame1_rect.colliderect(bolesD.ballD_rect) :
+        if juga1.kame1_rect.colliderect(bolesD.ballD_rect) and (juga1.acabat1 == False) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
             juga1.life1 -= 1
             if juga1.life1 <= 0 :
                 juga1.acabat1 = True
                 if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img)
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(5)
-        if juga2.kame2_rect.colliderect(bolesD.ballD_rect) :
+        if juga2.kame2_rect.colliderect(bolesD.ballD_rect) and (juga2.acabat2 == False)  :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
             juga2.life2 -= 1 
             if juga2.life2 <= 0 :
                 juga2.acabat2 = True
                 if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img)
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(5)
         if bolesD.ball_y > (joc.alsada_Pantalla - bolesD.alsada_ball) :
             bolesD.ball_y = 0
@@ -591,49 +636,48 @@ class Joc (object) :
             if juga1.life1 <= 0 :
                 juga1.acabat1 = True
                 if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img)
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(5)
             juga2.life2 -= 1
             if juga2.life2 <= 0 :
                 juga2.acabat2 = True
                 if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img)
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(5)
         """ condicional en augment de puntuació i decrement de vides """
         if (juga1.score1+juga2.score2) > 9 and (juga1.score1+juga2.score2 < 20)  :
             joc.level = 2
-            img.goku = img.songohanr
-            img.gokur = img.songohan
-            img.a16r = img.Trunks
-            img.a16 = img.Trunksr
-            bolesD.boles_speed = 6
+            img.juga2dreta = img.songohanr
+            img.juga2esque = img.songohan
+            img.juga1dreta = img.Trunks
+            img.juga1esque = img.Trunksr
+            bolesD.boles_speed = 9
         if (juga1.score1+juga2.score2) > 19 and (juga1.score1+juga2.score2 < 30)  :
             joc.level = 3
-            img.Fons_n1 = img.Fons_n3
-            img.ballD = img.ball4
-            bolesD.boles_speed = 11
+            img.Fons = img.Fons_n3
+            img.ball = img.ball4
         if (juga1.score1+juga2.score2) > 29 and (juga1.score1+juga2.score2 < 50)  :
             joc.level = 4
-            img.goku = img.goku7r
-            img.gokur = img.goku7
-            img.a16r = img.Vegeta
-            img.a16 = img.Vegetar
-            bolesD.boles_speed = 8
+            img.juga2dreta = img.goku7r
+            img.juga2esque = img.goku7
+            img.juga1dreta = img.Vegeta
+            img.juga1esque = img.Vegetar
+            bolesD.boles_speed = 10
         if (juga1.score1+juga2.score2) > 49 and (juga1.score1+juga2.score2 < 60)  :
             joc.level = 5
-            img.Fons_n1 = img.Fons_n5
-            img.ballD = img.ballZ
-            bolesD.boles_speed = 9
+            img.Fons = img.Fons_n5
+            img.ball = img.ballZ
+            bolesD.boles_speed = 12
         if (juga1.score1+juga2.score2) > 59 and (juga1.score1+juga2.score2 < 70)  :
             joc.level = 6
-            img.goku = img.goku4r
-            img.gokur = img.goku4
-            img.a16r = img.Vegeta1r
-            img.a16 = img.Vegeta1
-            bolesD.boles_speed = 10
+            img.juga2dreta = img.goku4r
+            img.juga2esque = img.goku4
+            img.juga1dreta = img.Vegeta1r
+            img.juga1esque = img.Vegeta1
+            bolesD.boles_speed = 14
         if juga1.score1+juga2.score2 > 69  :
-            img.Fons_n1 = img.Fons_n7
-            bolesD.boles_speed = 11
+            img.Fons = img.Fons_n7
+            bolesD.boles_speed = 16
         """ canvis de personatges i fons de paisstges quan augmentem el nivell """            
         if juga1.j1_x > joc.amplada_Pantalla- joc.amplada_jugador :
             juga1.j1_x = 0
@@ -653,7 +697,7 @@ class Joc (object) :
         self.tipografia = pygame.font.SysFont("serif", joc.marca_txt)
         self.marcador2 = self.tipografia.render("Score:{} life:{} ||L.:".format(juga2.score2, juga2.life2),1,(222, 62, 62))
         self.marcador1 = self.tipografia.render("{}|| life:{} Score:{}".format(joc.level, juga1.life1, juga1.score1),1,(62, 62, 222))
-        joc.pantalla.blit(img.Fons_n1, (0, 0))
+        joc.pantalla.blit(img.Fons, (0, 0))
         joc.pantalla.blit(self.marcador2, (0, 10))
         joc.pantalla.blit(self.marcador1, (joc.amplada_Pantalla/2, 10))
         if juga1.acabat1 == False :
@@ -662,7 +706,7 @@ class Joc (object) :
         if juga2.acabat2 == False :
             joc.pantalla.blit(juga2.guerrer2, (juga2.j2_x, juga2.j2_y))
             joc.pantalla.blit(img.kame2, (juga2.ka2_x, juga2.ka2_y))
-        joc.pantalla.blit(img.ballD, (bolesD.ball_x, bolesD.ball_y))
+        joc.pantalla.blit(img.ball, (bolesD.ball_x, bolesD.ball_y))
         pygame.display.flip()
         """ final de la càrrega de la pantalla del joc """
 # -----------------------------------------------------------------------------------------------------------------------
@@ -725,6 +769,8 @@ class Joc (object) :
         crearem els esdeveniments per la portada iteractiva
         """
         container = []
+        rato = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
         for event in pygame.event.get() :
             if event.type == pygame.QUIT :
                 fer = True 
@@ -734,8 +780,8 @@ class Joc (object) :
                     fer = True 
                     """ sortida del programa en la tecla abortar """
                 if event.key == 112 :
-                    juga2.acabat2 = not juga2.acabat2
-                    if juga2.acabat2 == True :
+                    juga1.acabat1 = not juga1.acabat1
+                    if juga1.acabat1 == True :
                         txt.color_txt1 = (212, 12, 12)
                     else:
                         txt.color_txt1 = (12, 12, 12)
@@ -743,6 +789,17 @@ class Joc (object) :
                 if event.key == 107 :
                     txt.color_txt2 = (212, 12, 12)
                     inserir = False
+                if event.key == 103 :
+                    juga1.score1, juga2.score2, juga1.life1, juga2.life2, joc.level = 0, 0, 3, 3, 1
+                    juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons = img.a16, img.goku, img.ballD, img.Fons_n1
+                    img.juga1dreta, img.juga1esque, img.juga2dreta, img.juga2esque = img.a16r, img.a16, img.goku, img.gokur
+                    juga1.j1_x = joc.amplada_Pantalla*2/3
+                    juga2.j2_x = joc.amplada_Pantalla/3
+                    pygame.mixer.music.load("BolaDracZ.mp3")
+                    pygame.mixer.music.set_volume(1)
+                    pygame.mixer.music.play (-1)
+                    """ cançó de bola de drac Z"""
+                    sortir = False                    
                 if event.key == 282 :
                     joc.amplada_Pantalla = 950
                     joc.alsada_Pantalla = 690
@@ -772,12 +829,37 @@ class Joc (object) :
                     #container = joc.connecSQL() 
                     reg = False
                     time.sleep(0.5)                     
-            elif event.type == pygame.MOUSEMOTION :
+            elif (joc.amplada_Pantalla/2 > rato[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*8/10 + joc.mida_txt > rato[1] > joc.alsada_Pantalla*8/10) :
                 txt.color_txt5 = (212, 12, 12)
-            elif event.type == pygame.MOUSEBUTTONDOWN :
-                juga1.score1, juga2.score2, juga1.life1, juga2.life2, joc.level = 0, 0, 3, 3, 1
-                juga1.guerrer1, juga2.guerrer2, img.ballD = img.a16, img.goku, img.ballD
-                sortir = False 
+                if click[0] == 1 :                    
+                    juga1.score1, juga2.score2, juga1.life1, juga2.life2, joc.level = 0, 0, 3, 3, 1
+                    juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons = img.a16, img.goku, img.ballD, img.Fons_n1
+                    img.juga1dreta, img.juga1esque, img.juga2dreta, img.juga2esque = img.a16r, img.a16, img.goku, img.gokur
+                    juga1.j1_x = joc.amplada_Pantalla*2/3
+                    juga2.j2_x = joc.amplada_Pantalla/3
+                    pygame.mixer.music.load("BolaDracZ.mp3")
+                    pygame.mixer.music.set_volume(1)
+                    pygame.mixer.music.play (-1)
+                    """ cançó de bola de drac Z"""
+                    sortir = False
+            elif (joc.amplada_Pantalla/2 > rato[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*6/10 + joc.mida_txt > rato[1] > joc.alsada_Pantalla*6/10) :
+                txt.color_txt4 = (212, 12, 12)
+                if click[0] == 1 :
+                    #container = joc.connecSQL()
+                    reg = False
+            elif (joc.amplada_Pantalla/2 > rato[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*2/10 + joc.mida_txt > rato[1] > joc.alsada_Pantalla*2/10) :
+                txt.color_txt2 = (212, 12, 12)
+                if click[0] == 1 :
+                    inserir = False
+            elif (joc.amplada_Pantalla/2 > rato[0] > joc.amplada_Pantalla/10) and (10 + joc.mida_txt > rato[1] > 10) :
+                if click[0] == 1 :
+                    juga1.acabat1 = not juga1.acabat1
+                    if juga1.acabat1 == True :
+                        txt.color_txt1 = (212, 12, 12)
+                    else:
+                        txt.color_txt1 = (12, 12, 12)  
+            else :
+                txt.color_txt5, txt.color_txt4, txt.color_txt2 = (12, 12, 12), (12, 12, 12), (12, 12, 12)
                 """ en cas d'entrar en la primera fase del joc """
             #print(event)
         return reg, fer, sortir,inserir, container        
@@ -819,12 +901,12 @@ class Joc (object) :
                     inserir = True
                     text1.color_txt2 = (12, 12, 12)
         return inserir
-    def visualRegister (self, txt, joc, img, jugador1) :
+    def visualRegister (self, txt, joc, img, jugador2) :
         """ crearem el mètode per visualitzar el camps del nostre nou registre """
-        joc.pantalla.fill(joc.color_scr)
-        #formAuxiliar(joc, jugador1)
-        pygame.display.flip()
-        #return True
+        #joc.pantalla.fill(joc.color_scr)
+        formAuxiliar(joc, jugador2)
+        return True
+        #pygame.display.flip()
 """-------------------------------------------------------------------------------------------------------------------
    ------------------------------------------------------ Funcions principal main ------------------------------------
    -------------------------------------------------------------------------------------------------------------------
@@ -838,7 +920,7 @@ def main():
     pygame.display.set_caption("Bola de Drac Z")
     """ rètol de la finestra """
     container = []
-    acabar, sortir, rank, inserir = False, True, True, True
+    acabar, sortir, rank, inserir, pause = False, True, True, True, True
     segons = pygame.time.Clock()
     joc = Joc()
     joc.modiMides()
@@ -855,11 +937,19 @@ def main():
         """ Bucle principal metres el boolean sigui False sortirà portada iteractiva"""               
         while not sortir: 
             """ Bucle aniuat mentres sortir sigui False sortirà video joc"""             
-            sortir = joc.procesEvents(jugador1, jugador2, joc, img)
+            sortir, pause = joc.procesEvents(jugador1, jugador2, joc, img)
             if sortir == True :
                 continue
+            while not pause :
+                pause = joc.paused(pause, joc)
+                """ crida el mèdode paused per parar el joc """
+                if pause == True :
+                    pygame.mixer.music.unpause()
+                pygame.display.update()
+                segons.tick(60)
+                """ farem 60 cops en un segon el bucle d'esdeveniments """
             """ crida del mètode d'entrada d'esdeveniment per entrades """
-            sortir = joc.logicaExecutar(jugador1, jugador2, joc, img, bolesD)
+            sortir = joc.logicaExecutar(jugador1, jugador2, joc, img, bolesD, text1)
             """ crida del mètode per les noves posiciones dels objets i
              ens comprobarà les coal·lissions """
             joc.visualPantalla(jugador1, jugador2, joc, img, bolesD)
@@ -880,7 +970,7 @@ def main():
             """bucle on innsertirem els camps del nou registre """
             inserir = joc.evensRegister(inserir, text1)
             """ mètode per controlar les entrades de caràcters d'entrada """
-            joc.visualRegister(text1, joc, img, jugador1)
+            inserir = joc.visualRegister(text1, joc, img, jugador2)
             """ mètode on serà visibilitats els textes en la pantalla creada """
             pygame.display.update()
             segons.tick(60)
@@ -917,17 +1007,17 @@ def main():
 #    connexio.commit()
 #    connexio.close()
 #----------------------------  funció d'extreure el formulari per pantalla
-def formAuxiliar (joc, jugador1) :
+def formAuxiliar (joc, jugador2) :
 #------------------- MULTIUSER BOX
     title = "Introduir nou registre"
     fieldNames = ["Nom","Pais", "Mail"]
     fieldValues = [""] * len(fieldNames)
     #print (len(fieldValues), type(fieldValues))
-    surtok = fes_bucle(joc, jugador1, fieldNames, fieldValues, title, "Introdueixi les dades")
+    surtok = fes_bucle(joc, jugador2, fieldNames, fieldValues, title, "Introdueixi les dades")
     if surtok == True:
         print ("grava dades", fieldValues)
 #---------------------- BUCLE D'ACEPTACIO DE DADES FINS QUE ESTIGUIN OK
-def fes_bucle (joc, jugador1, fieldNames, fieldValues, title, errores_msg):   
+def fes_bucle (joc, jugador2, fieldNames, fieldValues, title, errores_msg):   
     
     validOK = False
     
@@ -950,7 +1040,7 @@ def fes_bucle (joc, jugador1, fieldNames, fieldValues, title, errores_msg):
                 validOK = True
     #------------------------------------------- end while
     #nivell = joc.level
-    #puntuacio = jugador1.score1
+    #puntuacio = jugador2.score2
     #print ("Dades entrades:", fieldValues)
     #connecSQLIn(fieldValues[0], nivell, fieldValues[2], fieldValues[1], puntuacio)
     return True
@@ -966,3 +1056,4 @@ if __name__ == "__main__":
     """     
     main() 
     """ funció principal main() """
+    
