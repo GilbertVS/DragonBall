@@ -147,7 +147,7 @@ class carregaImg (object) :
     """
     creació de la classe del projectil per el jugador 2, 
     """
-    def __init__ (self, joc, juga1, juga2, ball, enem1, pro1) :
+    def __init__ (self, joc, juga1, juga2, ball, enem1, pro1, enem2, pro2) :
         """
         creació del constructor de la classe
         """
@@ -269,7 +269,18 @@ class carregaImg (object) :
         self.kame0 = pygame.image.load(self.kame0)
         self.kame0 = pygame.transform.scale(self.kame0, (int(pro1.amplada_project), int(pro1.alsada_project))) 
         """ carrega el projectil de l'enemic 1 """
-    def actualImg (self, joc, juga1, juga2, ball, enem1, pro1) :
+        self.frizer = "frieza.png"
+        self.frizer = pygame.image.load(self.frizer)
+        self.frizer = pygame.transform.scale(self.frizer, (int(enem2.amplada_enemic), int(enem2.alsada_enemic)))
+        self.Artwork = "Artwork.png"
+        self.Artwork = pygame.image.load(self.Artwork)
+        self.Artwork = pygame.transform.scale(self.Artwork, (int(enem2.amplada_enemic), int(enem2.alsada_enemic)))
+        """ carrega de l'enemic 2 """
+        self.ball_F = "ball_F.png"
+        self.ball_F = pygame.image.load(self.ball_F)
+        self.ball_F = pygame.transform.scale(self.ball_F, (int(pro2.amplada_project), int(pro2.alsada_project)))
+        """ càrrega del projectil de l'enemic 2 """
+    def actualImg (self, joc, juga1, juga2, ball, enem1, pro1, enem2, pro2) :
         """
         creació del mètode per l'actualització del jugador
         """
@@ -374,11 +385,10 @@ class carregaImg (object) :
         self.juga1esque = self.a16
         self.juga2dreta = self.goku
         self.juga2esque = self.gokur
-        """carregar dels fitxers imatge en variables per el fons de les finestres""" 
+        """carregar dels fitxers imatge en variables per el fons de les finestres"""
         self.goku3 = "goku31.png"
         self.goku3 = pygame.image.load(self.goku3)
         pygame.display.set_icon(self.goku3)
-        """ icona del joc per la finestre pygame """
         """ icona del joc per la finestre pygame """
         self.atomix = "Atomix1.png"
         self.atomix = pygame.image.load(self.atomix)
@@ -391,6 +401,18 @@ class carregaImg (object) :
         self.kame0 = pygame.image.load(self.kame0)
         self.kame0 = pygame.transform.scale(self.kame0, (int(pro1.amplada_project), int(pro1.alsada_project))) 
         """ carrega el projectil de l'enemic 1 """
+        self.frizer = "frieza.png"
+        self.frizer = pygame.image.load(self.frizer)
+        self.frizer = pygame.transform.scale(self.frizer, (int(enem2.amplada_enemic), int(enem2.alsada_enemic)))
+        self.Artwork = "Artwork.png"
+        self.Artwork = pygame.image.load(self.Artwork)
+        self.Artwork = pygame.transform.scale(self.Artwork, (int(enem2.amplada_enemic), int(enem2.alsada_enemic)))
+        """ carrega de l'enemic 2 """
+        self.ball_F = "ball_F.png"
+        self.ball_F = pygame.image.load(self.ball_F)
+        self.ball_F = pygame.transform.scale(self.ball_F, (int(pro2.amplada_project), int(pro2.alsada_project)))
+        """ càrrega del projectil de l'enemic 2 """
+        
 class Enemic1 (object) :
     """
     creació de la classe per el enemic 1, on emprearem els mètodes de posició
@@ -439,34 +461,50 @@ class EnemicPro1 (object) :
         self.pro1_x = enem1.e1_x
         self.pro1_y = enem1.e1_y
         """ posicions i atributs del projectil de l'enemic 1 """
-class Enemic2 () :
+class Enemic2 (object) :
     """
     creació de la classe per el enemic 2, on emprearem els mètodes de posició
     """
-    def __init__ (self) :
+    def __init__ (self, joc) :
         """
         creació del constructor de la classe
         """
-        pass
-    def actualJuga (self) :
+        self.enemic2 = ""
+        self.amplada_enemic = joc.amplada_Pantalla/8
+        self.alsada_enemic = joc.alsada_Pantalla/3
+        self.e2_x = random.randrange(0, int(joc.amplada_Pantalla - self.amplada_enemic))
+        self.e2_y = self.alsada_enemic/2
+        self.e2Amagat = False
+    def actualJuga (self, joc) :
         """
         creació del mètode per l'actualització de l'enemic 2
         """
-        pass
-class EnemicPro2 () :
+        self.enemic2 = ""
+        self.amplada_enemic = joc.amplada_Pantalla/12
+        self.alsada_enemic = joc.alsada_Pantalla/4
+        self.e2_x = random.randrange(0, int(joc.amplada_Pantalla - self.amplada_enemic))
+        self.e2_y = self.alsada_enemic/2
+        self.e2Amagat = False
+class EnemicPro2 (object) :
     """
     creació de la classe del projectil per el enemicPro 2, 
     """
-    def __init__ (self) :
+    def __init__ (self, joc, enem2) :
         """
         creació del constructor de la classe
         """
-        pass
-    def actualProj (self) :
+        self.amplada_project = joc.amplada_Pantalla/14
+        self.alsada_project = joc.alsada_Pantalla/12
+        self.pro2_x = enem2.e2_x
+        self.pro2_y = enem2.e2_y
+    def actualProj (self, joc, enem2) :
         """
         creació del mètode per l'actualització de l'enemic 2
         """
-        pass
+        self.amplada_project = joc.amplada_Pantalla/14
+        self.alsada_project = joc.alsada_Pantalla/12
+        self.pro2_x = enem2.e2_x
+        self.pro2_y = enem2.e2_y
 class Bolesdrac (object) :
     """
     creació de la classe de les boles de drac on ens recuperarem amb increments
@@ -477,7 +515,7 @@ class Bolesdrac (object) :
         creació del constructor de la classe
         """
         #self.ballD = ""
-        self.boles_speed = 4
+        self.boles_speed = 2
         self.alsada_ball = joc.alsada_Pantalla / 12
         self.amplada_ball = joc.amplada_Pantalla / 14
         self.ball_x = random.randrange(0, int(joc.amplada_Pantalla - self.amplada_ball))
@@ -584,7 +622,7 @@ class Joc (object) :
                 if moment.key == pygame.K_ESCAPE :                
                     fer = True
                 if moment.key == 112 :
-                    pause = False                         
+                    pause = False                           
             elif moment.type == pygame.KEYUP :
                 if moment.key == juga1.dreta_jug1 or moment.key == juga1.esque_jug1 :
                     juga1.jugador1_speed = 0
@@ -596,7 +634,7 @@ class Joc (object) :
                 if moment.key == juga2.tret_jug2 :
                     juga2.tret2_speed = 0
                     juga2.ka2_y = joc.alsada_Pantalla - juga2.alsada_kame
-        return fer, pause
+        return fer, pause    
     def paused (self, pause, joc) :
         """
         crearem el mètode per parar el joc 
@@ -615,7 +653,7 @@ class Joc (object) :
         pygame.mixer.music.pause()
         pygame.display.flip()
         return pause
-    def logicaExecutar (self, juga1, juga2, joc, img, bolesD, txt, enem1, pro1) :
+    def logicaExecutar (self, juga1, juga2, joc, img, bolesD, txt, enem1, pro1, enem2, pro2) :
         """
         crearem el mètode on aniran fer actualitzacions de les noves posicions del objectes 
         """
@@ -625,6 +663,7 @@ class Joc (object) :
         juga2.j2_x += juga2.jugador2_speed
         bolesD.ball_y += bolesD.boles_speed
         pro1.pro1_y += bolesD.boles_speed
+        pro2.pro2_y += bolesD.boles_speed
         juga1.ka1_x = juga1.j1_x + juga1.canvi_pos1
         juga1.ka1_y += juga1.tret1_speed
         juga2.ka2_x = juga2.j2_x + juga2.canvi_pos2
@@ -643,18 +682,27 @@ class Joc (object) :
         juga2.kame2_rect = img.kame2.get_rect()
         juga2.kame2_rect.top = juga2.ka2_y
         juga2.kame2_rect.left = juga2.ka2_x
-        """ conversió a rectangle de l'objecte 1 """
+        """ conversió a rectangle de l'objecte 2 """
         bolesD.ballD_rect = img.ball.get_rect()
         bolesD.ballD_rect.top = bolesD.ball_y
         bolesD.ballD_rect.left = bolesD.ball_x 
         """ conversió a rectangle de les boles de drac """
-        enem1.enemic1_rect = img.atomix.get_rect()
+        enem1.enemic1_rect = enem1.enemic1.get_rect()
         enem1.enemic1_rect.top = enem1.e1_y
         enem1.enemic1_rect.left = enem1.e1_x
         """ conversió a rectangle l'enemic 1 """
         pro1.project1_rect = img.kame0.get_rect()
         pro1.project1_rect.top = pro1.pro1_y
         pro1.project1_rect.left = pro1.pro1_x
+        """ conversió a rectangle el projectil de l'enemic 1 """
+        enem2.enemic2_rect = enem2.enemic2.get_rect()
+        enem2.enemic2_rect.top = enem2.e2_y
+        enem2.enemic2_rect.left = enem2.e2_x
+        """ conversió a rectangle l'enemic 1 """
+        pro2.project2_rect = img.ball_F.get_rect()
+        pro2.project2_rect.top = pro2.pro2_y
+        pro2.project2_rect.left = pro2.pro2_x
+        """ conversió a rectangle el projectil de l'enemic 1 """
         if juga1.juga1_rect.colliderect(bolesD.ballD_rect) and (juga1.acabat1 == False) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
@@ -729,7 +777,40 @@ class Joc (object) :
                 if juga1.life1 <= 0 :
                     final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(4)    
-        
+        """ càlcul de la coalisió amb l'enemic 1"""
+        if juga1.kame1_rect.colliderect(enem2.enemic2_rect) :
+            enem2.e2_x = random.randrange(0, int(joc.amplada_Pantalla - enem2.amplada_enemic))
+            juga2.score2 += 2
+        if juga2.kame2_rect.colliderect(enem2.enemic2_rect) :
+            enem2.e2_x = random.randrange(0, int(joc.amplada_Pantalla - enem2.amplada_enemic))
+            juga2.score2 += 2
+        if pro2.pro2_y > (joc.alsada_Pantalla - 2*pro2.alsada_project) :
+            pro2.pro2_y = enem2.alsada_enemic/2
+            pro2.pro2_x = enem2.e2_x 
+        if juga1.kame1_rect.colliderect(pro2.project2_rect) :
+            pro2.pro2_y = enem2.alsada_enemic/2
+            pro2.pro2_x = enem2.e2_x 
+        if juga2.kame2_rect.colliderect(pro2.project2_rect) :
+            pro2.pro2_y = enem2.alsada_enemic/2
+            pro2.pro2_x = enem2.e2_x            
+        if pro2.project2_rect.colliderect(juga1.juga1_rect) and (juga1.acabat1 == False) :
+            pro2.pro2_y = enem2.alsada_enemic/2
+            pro2.pro2_x = enem2.e2_x
+            juga1.life1 -= 1
+            if juga1.life1 <= 0 :
+                juga1.acabat1 = True
+                if juga2.life2 <= 0 :
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
+                    time.sleep(4)
+        if pro2.project2_rect.colliderect(juga2.juga2_rect) and (juga2.acabat2 == False) :
+            pro2.pro2_y = enem2.alsada_enemic/2
+            pro2.pro2_x = enem2.e2_x        
+            juga2.life2 -= 1
+            if juga2.life2 <= 0 :
+                juga2.acabat2 = True
+                if juga1.life1 <= 0 :
+                    final = joc.game_over(juga1, juga2, joc, img, txt)
+                    time.sleep(4)        
         """ condicional en augment de puntuació i decrement de vides """
         if (juga1.score1+juga2.score2) > 9 and (juga1.score1+juga2.score2 < 20)  :
             joc.level = 2
@@ -737,7 +818,7 @@ class Joc (object) :
             img.juga2esque = img.songohan
             img.juga1dreta = img.Trunks
             img.juga1esque = img.Trunksr
-            bolesD.boles_speed = 7
+            bolesD.boles_speed = 3
         if (juga1.score1+juga2.score2) > 19 and (juga1.score1+juga2.score2 < 40)  :
             joc.level = 3
             img.Fons = img.Fons_n3
@@ -748,24 +829,27 @@ class Joc (object) :
             img.juga2esque = img.goku7
             img.juga1dreta = img.Vegeta
             img.juga1esque = img.Vegetar
-            bolesD.boles_speed = 8
+            bolesD.boles_speed = 4
             enem1.enemic1 = img.buu
+            enem2.enemic2 = img.Artwork
         if (juga1.score1+juga2.score2) > 59 and (juga1.score1+juga2.score2 < 80)  :
             joc.level = 5
             img.Fons = img.Fons_n5
             img.ball = img.ballZ
-            bolesD.boles_speed = 9
+            bolesD.boles_speed = 6
+            enem2.enemic2 = img.frizer
         if (juga1.score1+juga2.score2) > 79 and (juga1.score1+juga2.score2 < 100)  :
             joc.level = 6
             img.juga2dreta = img.goku4r
             img.juga2esque = img.goku4
             img.juga1dreta = img.Vegeta1r
             img.juga1esque = img.Vegeta1
-            bolesD.boles_speed = 10
+            bolesD.boles_speed = 7
             enem1.enemic1 = img.atomix
         if juga1.score1+juga2.score2 > 99  :
             img.Fons = img.Fons_n7
-            bolesD.boles_speed = 11
+            enem2.enemic2 = img.Artwork
+            bolesD.boles_speed = 8
         """ canvis de personatges i fons de paisstges quan augmentem el nivell """            
         if juga1.j1_x > joc.amplada_Pantalla- joc.amplada_jugador :
             juga1.j1_x = 0
@@ -778,7 +862,7 @@ class Joc (object) :
         """ condicions de reposicionaments dels jugadors fora de límits """ 
         return final
     """ acabar tot el procés de lògica d'execucions """       
-    def visualPantalla (self, juga1, juga2, joc, img, bolesD, enem1, pro1) :
+    def visualPantalla (self, juga1, juga2, joc, img, bolesD, enem1, pro1, enem2, pro2) :
         """
         crearem el mètode per la visualtizatció de les continues modificacions dels objectes del joc
         """
@@ -796,7 +880,7 @@ class Joc (object) :
             joc.pantalla.blit(img.kame2, (juga2.ka2_x, juga2.ka2_y))
         joc.pantalla.blit(img.ball, (bolesD.ball_x, bolesD.ball_y))
         if (joc.level > 1) and ((juga1.score1+juga2.score2)%3 != 0) :
-            if enem1.e1Amagat == False:
+            if enem1.e1Amagat == False :
                 enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
                 enem1.e1Amagat = True
             joc.pantalla.blit(enem1.enemic1, (enem1.e1_x, enem1.e1_y))
@@ -807,6 +891,17 @@ class Joc (object) :
         else :
             pro1.pro1_y = enem1.e1_y
             pro1.pro1_x = enem1.e1_x
+        if (joc.level > 3) and ((juga1.score1+juga2.score2+1)%3 != 0) :
+            if enem2.e2Amagat == False :
+                enem2.e2_x = random.randrange(0, int(joc.amplada_Pantalla - enem2.amplada_enemic))
+                enem2.e2Amagat = True
+            joc.pantalla.blit(enem2.enemic2, (enem2.e2_x, enem2.e2_y))
+            joc.pantalla.blit(img.ball_F, (pro2.pro2_x, pro2.pro2_y))
+        else :
+            enem2.e2Amagat = False
+            pro2.pro2_y = enem2.e2_y
+            pro2.pro2_x = enem2.e2_x
+            
         pygame.display.flip()
         """ final de la càrrega de la pantalla del joc """
 # -----------------------------------------------------------------------------------------------------------------------
@@ -849,22 +944,33 @@ class Joc (object) :
         """
         joc.pantalla.fill(joc.color_scr)
         self.tipografia = pygame.font.SysFont("serif", joc.mida_txt)
+        self.tipografia2 = pygame.font.SysFont("serif", int(joc.mida_txt/2))
         self.linia1 = self.tipografia.render("THE BEST SCORE HERE", 1, (21, 21, 212))
-#        self.linia2 = self.tipografia.render("1. {} ({}): {}".format(container[1],container[3],container[5]),1,(21, 21, 21))
-#        self.linia3 = self.tipografia.render("2. {} ({}): {}".format(container[7],container[9],container[11]),1,(21, 21, 21))
-#        self.linia4 = self.tipografia.render("3. {} ({}): {}".format(container[13],container[15],container[17]),1,(21, 21, 21))
-#        self.linia5 = self.tipografia.render("4. {} ({}): {}".format(container[19],container[21],container[23]),1,(21, 21, 21))
+#        self.linia2 = self.tipografia2.render("1. {} ({}): {}".format(container[1],container[3],container[5]),1,(21, 21, 21))
+#        self.linia3 = self.tipografia2.render("2. {} ({}): {}".format(container[7],container[9],container[11]),1,(21, 21, 21))
+#        self.linia4 = self.tipografia2.render("3. {} ({}): {}".format(container[13],container[15],container[17]),1,(21, 21, 21))
+#        self.linia5 = self.tipografia2.render("4. {} ({}): {}".format(container[19],container[21],container[23]),1,(21, 21, 21))
+#        self.linia6 = self.tipografia2.render("5. {} ({}): {}".format(container[25],container[27],container[29]),1,(21, 21, 21))
+#        self.linia7 = self.tipografia2.render("6. {} ({}): {}".format(container[31],container[33],container[35]),1,(21, 21, 21))
+#        self.linia8 = self.tipografia2.render("7. {} ({}): {}".format(container[37],container[39],container[41]),1,(21, 21, 21))
+#        self.linia9 = self.tipografia2.render("8. {} ({}): {}".format(container[43],container[45],container[47]),1,(21, 21, 21))
+#        self.linia10 = self.tipografia2.render("9. {} ({}): {}".format(container[49],container[51],container[53]),1,(21, 21, 21))
         joc.pantalla.blit(img.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
         joc.pantalla.blit(self.linia1, (joc.amplada_Pantalla/10, 10))
-#        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/5))
-#        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/5))
-#        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/5)) 
-#        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/5))
+#        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/10))
+#        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/10))
+#        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/10)) 
+#        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/10))
+#        joc.pantalla.blit(self.linia6, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*5/10))
+#        joc.pantalla.blit(self.linia7, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*6/10))
+#        joc.pantalla.blit(self.linia8, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*7/10)) 
+#        joc.pantalla.blit(self.linia9, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*8/10))
+#        joc.pantalla.blit(self.linia10, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*9/10))
         pygame.display.flip()
 # -----------------------------------------------------------------------------------------------------------------------
 #    ------------------------------------------- mètodes per la portada iteractiva --------------------------------------
 #   --------------------------------------------------------------------------------------------------------------------- 
-    def evensMenu (self, reg, fer, sortir, inserir, txt, joc, juga1, juga2, img, bolesD, enem1, pro1) :
+    def evensMenu (self, reg, fer, sortir, inserir, txt, joc, juga1, juga2, img, bolesD, enem1, pro1, enem2, pro2) :
         """
         crearem els esdeveniments per la portada iteractiva
         """
@@ -909,7 +1015,9 @@ class Joc (object) :
                     bolesD.actualBole(joc)
                     enem1.actualJuga(joc)
                     pro1.actualProj(joc, enem1)
-                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1)
+                    enem2.actualJuga(joc)
+                    pro2.actualProj(joc, enem2)
+                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1, enem2, pro2)
                 if event.key == 283 :
                     joc.amplada_Pantalla = 730
                     joc.alsada_Pantalla = 530
@@ -919,7 +1027,9 @@ class Joc (object) :
                     bolesD.actualBole(joc)
                     enem1.actualJuga(joc)
                     pro1.actualProj(joc, enem1)
-                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1)
+                    enem2.actualJuga(joc)
+                    pro2.actualProj(joc, enem2)
+                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1, enem2, pro2)
                 if event.key == 284 :
                     joc.amplada_Pantalla = 550
                     joc.alsada_Pantalla = 400
@@ -929,17 +1039,19 @@ class Joc (object) :
                     bolesD.actualBole(joc)
                     enem1.actualJuga(joc)
                     pro1.actualProj(joc, enem1)
-                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1)
+                    enem2.actualJuga(joc)
+                    pro2.actualProj(joc, enem2)
+                    img.actualImg(joc, juga1, juga2, bolesD, enem1, pro1, enem2, pro2)
                 if event.key == 114 :
                     txt.color_txt4 = (212, 12, 12)
-                    container = joc.connecSQL() 
+                    #container = joc.connecSQL() 
                     reg = False
                     time.sleep(0.5)                     
         if (joc.amplada_Pantalla/2 + joc.amplada_Pantalla/10 > mouse[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*8/10 + joc.mida_txt > mouse[1] > joc.alsada_Pantalla*8/10) :
             txt.color_txt5 = (212, 12, 12)
             if click[0] == 1 :                    
                 juga1.score1, juga2.score2, juga1.life1, juga2.life2, joc.level = 0, 0, 3, 3, 1
-                juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons, enem1.enemic1 = img.a16, img.goku, img.ballD, img.Fons_n1, img.atomix
+                juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons, enem1.enemic1, enem2.enemic2 = img.a16, img.goku, img.ballD, img.Fons_n1, img.atomix, img.frizer
                 img.juga1dreta, img.juga1esque, img.juga2dreta, img.juga2esque = img.a16r, img.a16, img.goku, img.gokur
                 juga1.j1_x = joc.amplada_Pantalla*2/3
                 juga2.j2_x = joc.amplada_Pantalla/3
@@ -951,7 +1063,7 @@ class Joc (object) :
         elif (joc.amplada_Pantalla/2 + joc.amplada_Pantalla/10 > mouse[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*6/10 + joc.mida_txt > mouse[1] > joc.alsada_Pantalla*6/10) :
             txt.color_txt4 = (212, 12, 12)
             if click[0] == 1 :
-                container = joc.connecSQL()
+                #container = joc.connecSQL()
                 reg = False
         elif (joc.amplada_Pantalla/2 + joc.amplada_Pantalla/10 > mouse[0] > joc.amplada_Pantalla/10) and (joc.alsada_Pantalla*4/10 + joc.mida_txt > mouse[1] > joc.alsada_Pantalla*4/10) :
             txt.color_txt3 = (212, 12, 12)
@@ -970,14 +1082,14 @@ class Joc (object) :
         else :
             txt.color_txt5, txt.color_txt4, txt.color_txt3, txt.color_txt2 = (12, 12, 12), (12, 12, 12), (12, 12, 12), (12, 12, 12)
             """ en cas d'entrar en la primera fase del joc """
-        return reg, fer, sortir,inserir, container       
+        return reg, fer, sortir,inserir, container        
     def visualMenu (self, txt, joc, img) :
         """
         crearem el mètode de visualització de la portada interactiva
         """
         joc.pantalla.fill(joc.color_scr)
         self.tipografia = pygame.font.SysFont("serif", joc.mida_txt)
-        self.opcio1 = self.tipografia.render("PLAYERS 1 (only)", 1, txt.color_txt1)
+        self.opcio1 = self.tipografia.render("PLAYERS:[1 only]", 1, txt.color_txt1)
         self.opcio2 = self.tipografia.render("KEY NEW REGISTRE", 1, txt.color_txt2)
         self.opcio3 = self.tipografia.render("OPTIONS CONFING", 1, txt.color_txt3)
         self.opcio4 = self.tipografia.render("RANKING PLAYERS", 1, txt.color_txt4)
@@ -1039,7 +1151,9 @@ def main():
     bolesD = Bolesdrac (joc)
     enemic1 = Enemic1 (joc)
     projectil1 = EnemicPro1(joc, enemic1)
-    img = carregaImg (joc, jugador1, jugador2, bolesD, enemic1, projectil1)
+    enemic2 = Enemic2 (joc)
+    projectil2 = EnemicPro2(joc, enemic2)
+    img = carregaImg (joc, jugador1, jugador2, bolesD, enemic1, projectil1, enemic2, projectil2)
     """
     crearem una instància per cada classe
     """
@@ -1059,10 +1173,10 @@ def main():
                 segons.tick(60)
                 """ farem 60 cops en un segon el bucle d'esdeveniments """
             """ crida del mètode d'entrada d'esdeveniment per entrades """
-            sortir = joc.logicaExecutar(jugador1, jugador2, joc, img, bolesD, text1, enemic1, projectil1)
+            sortir = joc.logicaExecutar(jugador1, jugador2, joc, img, bolesD, text1, enemic1, projectil1, enemic2, projectil2)
             """ crida del mètode per les noves posiciones dels objets i
              ens comprobarà les coal·lissions """
-            joc.visualPantalla(jugador1, jugador2, joc, img, bolesD, enemic1, projectil1)
+            joc.visualPantalla(jugador1, jugador2, joc, img, bolesD, enemic1, projectil1, enemic2, projectil2)
             """ Dibuixar el moment actual per observar tots els canvis """
             pygame.display.update()
             segons.tick(60) 
@@ -1087,7 +1201,7 @@ def main():
             """ farem 60 cops en un segon el bucle d'esdeveniments """
         text1.color_txt2, text1.color_txt4, text1.color_txt5 = (12, 12, 12), (12, 12, 12), (12, 12, 12)
         """ color negre per el botó Gamming """
-        rank, acabar, sortir, inserir, container = joc.evensMenu(rank, acabar, sortir, inserir, text1, joc, jugador1, jugador2, img, bolesD, enemic1, projectil1)
+        rank, acabar, sortir, inserir, container = joc.evensMenu(rank, acabar, sortir, inserir, text1, joc, jugador1, jugador2, img, bolesD, enemic1, projectil1, enemic2, projectil2)
         """crida de la funció d'esdeveniments per la portada iteractiva """
         joc.visualMenu(text1, joc, img)           
         """  visualització del menú amb totes les seves opcions """
