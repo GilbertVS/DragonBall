@@ -744,10 +744,10 @@ class Joc (object) :
                 if juga1.life1 <= 0 :
                     final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(4)
-        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) :
+        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) and (juga1.acabat1 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga1.score1 += 2
-        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) :
+        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) and (juga2.acabat2 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga2.score2 += 2
         if pro1.pro1_y > (joc.alsada_Pantalla - 2*pro1.alsada_project) :
@@ -847,6 +847,7 @@ class Joc (object) :
             bolesD.boles_speed = 7
             enem1.enemic1 = img.atomix
         if juga1.score1+juga2.score2 > 99  :
+            joc.level = 7
             img.Fons = img.Fons_n7
             enem2.enemic2 = img.Artwork
             bolesD.boles_speed = 8

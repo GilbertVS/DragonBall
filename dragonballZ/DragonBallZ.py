@@ -744,10 +744,10 @@ class Joc (object) :
                 if juga1.life1 <= 0 :
                     final = joc.game_over(juga1, juga2, joc, img, txt)
                     time.sleep(4)
-        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) :
+        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) and (juga1.acabat1 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga1.score1 += 2
-        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) :
+        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) and (juga2.acabat2 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga2.score2 += 2
         if pro1.pro1_y > (joc.alsada_Pantalla - 2*pro1.alsada_project) :
@@ -847,6 +847,7 @@ class Joc (object) :
             bolesD.boles_speed = 10
             enem1.enemic1 = img.atomix
         if juga1.score1+juga2.score2 > 99  :
+            joc.level = 7
             img.Fons = img.Fons_n7
             enem2.enemic2 = img.Artwork
             bolesD.boles_speed = 11
@@ -956,7 +957,8 @@ class Joc (object) :
 #        self.linia9 = self.tipografia2.render("8. {} ({}): {}".format(container[43],container[45],container[47]),1,(21, 21, 21))
 #        self.linia10 = self.tipografia2.render("9. {} ({}): {}".format(container[49],container[51],container[53]),1,(21, 21, 21))
         joc.pantalla.blit(img.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
-        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/10))
+        joc.pantalla.blit(self.linia1, (joc.amplada_Pantalla/10, 10))
+#        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/10))
 #        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/10))
 #        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/10)) 
 #        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/10))
