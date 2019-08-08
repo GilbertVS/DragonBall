@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Mon May 20 12:34:31 2019
 @file: DragonBallA.py
@@ -21,7 +21,7 @@ importarem les llibreries de python que necessitarem per soportar els mètodes d
 amb ordre descendent d'importància en el comportament de l'aplicació
 """
 dt = datetime.now()
-random.seed(dt.second)
+random.seed(dt.second*43)
 """
 recollirem un nou valor del qual la sèrie de nombres aleatòria sempre serà nova, evitarem 
 monotomies del nostre joc, en efecte sorpresa de les figures enemigues.
@@ -643,9 +643,11 @@ class Joc (object) :
             if moment.type == pygame.QUIT :
                 pause = True
             elif moment.type == pygame.KEYDOWN :
-                if moment.key == pygame.K_ESCAPE :
+                if moment.key == pygame.K_RETURN or moment.key == pygame.K_ESCAPE or moment.key == pygame.K_SPACE :
                     pause = True
-                if moment.key == 112 :
+                if moment.key == pygame.K_LEFT  or moment.key == pygame.K_RIGHT :
+                    pause = True
+                if moment.key == 112 or moment.key == 115  or moment.key == 97 :
                     pause = True
         tipografia = pygame.font.SysFont("serif", joc.mida_txt)
         texte = tipografia.render("PAUSED", 1, (21, 21, 21))
@@ -714,40 +716,42 @@ class Joc (object) :
         if juga1.kame1_rect.colliderect(bolesD.ballD_rect) and (juga1.acabat1 == False) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
-            #juga1.life1 -= 1
-            if juga1.life1 <= 0 :
-                juga1.acabat1 = True
-                if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
+#            juga1.life1 -= 1
+#            if juga1.life1 <= 0 :
+#                juga1.acabat1 = True
+#                if juga2.life2 <= 0 :
+#                    final = joc.game_over(juga1, juga2, joc, img, txt)
+#                    time.sleep(4)
         if juga2.kame2_rect.colliderect(bolesD.ballD_rect) and (juga2.acabat2 == False) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
-            #juga2.life2 -= 1 
-            if juga2.life2 <= 0 :
-                juga2.acabat2 = True
-                if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
+#            juga2.life2 -= 1 
+#            if juga2.life2 <= 0 :
+#                juga2.acabat2 = True
+#                if juga1.life1 <= 0 :
+#                    final = joc.game_over(juga1, juga2, joc, img, txt)
+#                    time.sleep(4)
         if bolesD.ball_y > (joc.alsada_Pantalla - 2*bolesD.alsada_ball) :
             bolesD.ball_y = 0
             bolesD.ball_x = random.randrange(0, int(joc.amplada_Pantalla - bolesD.amplada_ball))
-            juga1.life1 -= 1
-            if juga1.life1 <= 0 :
-                juga1.acabat1 = True
-                if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
-            juga2.life2 -= 1
-            if juga2.life2 <= 0 :
-                juga2.acabat2 = True
+            if juga1.life1 > 0 :
+                juga1.life1 -= 1
                 if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
-        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) :
+                    juga1.acabat1 = True
+                    if juga2.life2 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)
+            if juga2.life2 > 0 :
+                juga2.life2 -= 1
+                if juga2.life2 <= 0 :
+                    juga2.acabat2 = True
+                    if juga1.life1 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)
+        if juga1.kame1_rect.colliderect(enem1.enemic1_rect) and (juga1.acabat1 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga1.score1 += 2
-        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) :
+        if juga2.kame2_rect.colliderect(enem1.enemic1_rect) and (juga2.acabat2 == False) :
             enem1.e1_x = random.randrange(0, int(joc.amplada_Pantalla - enem1.amplada_enemic))
             juga2.score2 += 2
         if pro1.pro1_y > (joc.alsada_Pantalla - 2*pro1.alsada_project) :
@@ -762,21 +766,23 @@ class Joc (object) :
         if pro1.project1_rect.colliderect(juga1.juga1_rect) and (juga1.acabat1 == False) :
             pro1.pro1_y = enem1.alsada_enemic/2
             pro1.pro1_x = enem1.e1_x
-            juga1.life1 -= 1
-            if juga1.life1 <= 0 :
-                juga1.acabat1 = True
-                if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
+            if juga1.life1 > 0 :
+                juga1.life1 -= 1
+                if juga1.life1 <= 0 :
+                    juga1.acabat1 = True
+                    if juga2.life2 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)
         if pro1.project1_rect.colliderect(juga2.juga2_rect) and (juga2.acabat2 == False) :
             pro1.pro1_y = enem1.alsada_enemic/2
-            pro1.pro1_x = enem1.e1_x        
-            juga2.life2 -= 1
-            if juga2.life2 <= 0 :
-                juga2.acabat2 = True
-                if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)    
+            pro1.pro1_x = enem1.e1_x
+            if juga2.life2 > 0 :
+                juga2.life2 -= 1
+                if juga2.life2 <= 0 :
+                    juga2.acabat2 = True
+                    if juga1.life1 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)    
         """ càlcul de la coalisió amb l'enemic 1"""
         if juga1.kame1_rect.colliderect(enem2.enemic2_rect) :
             enem2.e2_x = random.randrange(0, int(joc.amplada_Pantalla - enem2.amplada_enemic))
@@ -796,21 +802,23 @@ class Joc (object) :
         if pro2.project2_rect.colliderect(juga1.juga1_rect) and (juga1.acabat1 == False) :
             pro2.pro2_y = enem2.alsada_enemic/2
             pro2.pro2_x = enem2.e2_x
-            juga1.life1 -= 1
-            if juga1.life1 <= 0 :
-                juga1.acabat1 = True
-                if juga2.life2 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)
+            if juga1.life1 > 0 :
+                juga1.life1 -= 1
+                if juga1.life1 <= 0 :
+                    juga1.acabat1 = True
+                    if juga2.life2 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)
         if pro2.project2_rect.colliderect(juga2.juga2_rect) and (juga2.acabat2 == False) :
             pro2.pro2_y = enem2.alsada_enemic/2
-            pro2.pro2_x = enem2.e2_x        
-            juga2.life2 -= 1
-            if juga2.life2 <= 0 :
-                juga2.acabat2 = True
-                if juga1.life1 <= 0 :
-                    final = joc.game_over(juga1, juga2, joc, img, txt)
-                    time.sleep(4)        
+            pro2.pro2_x = enem2.e2_x 
+            if juga2.life2 > 0 :
+                juga2.life2 -= 1
+                if juga2.life2 <= 0 :
+                    juga2.acabat2 = True
+                    if juga1.life1 <= 0 :
+                        final = joc.game_over(juga1, juga2, joc, img, txt)
+                        time.sleep(4)        
         """ condicional en augment de puntuació i decrement de vides """
         if (juga1.score1+juga2.score2) > 9 and (juga1.score1+juga2.score2 < 20)  :
             joc.level = 2
@@ -847,6 +855,7 @@ class Joc (object) :
             bolesD.boles_speed = 10
             enem1.enemic1 = img.atomix
         if juga1.score1+juga2.score2 > 99  :
+            joc.level = 7
             img.Fons = img.Fons_n7
             enem2.enemic2 = img.Artwork
             bolesD.boles_speed = 11
@@ -956,7 +965,8 @@ class Joc (object) :
 #        self.linia9 = self.tipografia2.render("8. {} ({}): {}".format(container[43],container[45],container[47]),1,(21, 21, 21))
 #        self.linia10 = self.tipografia2.render("9. {} ({}): {}".format(container[49],container[51],container[53]),1,(21, 21, 21))
         joc.pantalla.blit(img.goku8, (int(joc.amplada_Pantalla/2), int(joc.alsada_Pantalla/2)))
-        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/10))
+        joc.pantalla.blit(self.linia1, (joc.amplada_Pantalla/10, 10))
+#        joc.pantalla.blit(self.linia2, (joc.amplada_Pantalla/10, joc.alsada_Pantalla/10))
 #        joc.pantalla.blit(self.linia3, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*2/10))
 #        joc.pantalla.blit(self.linia4, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*3/10)) 
 #        joc.pantalla.blit(self.linia5, (joc.amplada_Pantalla/10, joc.alsada_Pantalla*4/10))
@@ -996,7 +1006,7 @@ class Joc (object) :
                     inserir = False
                 if event.key == 103 :
                     juga1.score1, juga2.score2, juga1.life1, juga2.life2, joc.level = 0, 0, 3, 3, 1
-                    juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons, enem1.enemic1 = img.a16, img.goku, img.ballD, img.Fons_n1, img.atomix
+                    juga1.guerrer1, juga2.guerrer2, img.ball, img.Fons, enem1.enemic1, enem2.enemic2 = img.a16, img.goku, img.ballD, img.Fons_n1, img.atomix, img.frizer
                     img.juga1dreta, img.juga1esque, img.juga2dreta, img.juga2esque = img.a16r, img.a16, img.goku, img.gokur
                     juga1.j1_x = joc.amplada_Pantalla*2/3
                     juga2.j2_x = joc.amplada_Pantalla/3
