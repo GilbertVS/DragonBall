@@ -21,7 +21,7 @@ importarem les llibreries de python que necessitarem per soportar els mètodes d
 amb ordre descendent d'importància en el comportament de l'aplicació
 """
 dt = datetime.now()
-random.seed(dt.second*43)
+random.seed(dt.second*13)
 """
 recollirem un nou valor del qual la sèrie de nombres aleatòria sempre serà nova, evitarem 
 monotomies del nostre joc, en efecte sorpresa de les figures enemigues.
